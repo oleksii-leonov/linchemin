@@ -31,7 +31,7 @@ dependencies = [
         "pydantic",
         "hdbscan",
         "scikit-learn",
-        "joblib==1.1.0",
+        "joblib==1.2.0",
         "dynaconf",
         "pyyaml",
         "flake8",
