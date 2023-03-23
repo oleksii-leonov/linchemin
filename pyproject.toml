@@ -50,8 +50,10 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
+        "black==23.1.0",
         "bumpver",
         "flake8==6.0.0",
+        "flake8-bugbear==23.3.12",
         "isort==5.12.0",
         "pre-commit==3.2.*",
         "pytest-cov",
@@ -69,8 +71,14 @@ linchemin_configure = "linchemin.configuration.config:configure"
 
 [tool.isort]
 atomic = true
+profile = "black"
 py_version = "38"
 skip_gitignore = true
+
+[tool.black]
+target-version = ['py38']
+include = '.*\.pyi?$'
+preview = true
 
 [tool.bumpver]
 current_version = "2.0.3"
