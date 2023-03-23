@@ -1,7 +1,6 @@
 [flake8]
-# 88 is a default max line length for black.
-max-line-length = 88
 # E203: Whitespace before ":" is PEP8-compatible and used by black for slices.
 # E266: Allow #### style comments.
+# E501: No need to check line length, enforced by black.
 # E731: Allow lambda expressions.
-extend-ignore=E203,E266,E731
+extend-ignore=E203,E266,E501,E731

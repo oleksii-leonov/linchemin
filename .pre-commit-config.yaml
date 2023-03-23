@@ -19,8 +19,19 @@ repos:
         args: [--branch, main]
       - id: trailing-whitespace
         exclude: '^docs/source/reference/generated/.*\.rst'
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.3.1
+    hooks:
+      - id: pyupgrade
+        args: [--py38-plus, --keep-runtime-typing]
+        files: '.*\.pyi?$'
   - repo: https://github.com/pycqa/isort
     rev: 5.12.0
     hooks:
       - id: isort
-        files: '^src/.*\.pyi?$'
+        files: '.*\.pyi?$'
+  - repo: https://github.com/psf/black
+    rev: '23.1.0'
+    hooks:
+      - id: black
+        files: '.*\.pyi?$'
