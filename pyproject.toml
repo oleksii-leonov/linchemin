@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=61.0.0", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "linchemin"
-version = "2.0.3"
+dynamic = ["version"]
 description = "Toolkit to create, manipulate, and query networks of Chemical Reactions and Chemicals"
 license = { file = "LICENSE" }
 authors = [
@@ -43,6 +43,7 @@ dependencies = [
         "pydantic",
         "pydot",
         "pyyaml",
+        "requests",
         "rdchiral",
         "rdkit>=2022.3",
         "scikit-learn",
@@ -60,8 +61,10 @@ dev = [
 ]
 
 [project.urls]
-homepage = "https://linchemin.github.io"
-repository = "https://github.com/syngenta/linchemin"
+Homepage = "https://linchemin.github.io"
+Documentation = "https://linchemin.readthedocs.io"
+Source = "https://github.com/syngenta/linchemin"
+Issues = "https://github.com/syngenta/linchemin/issues"
 
 [project.scripts]
 linchemin = "linchemin.interfaces.cli:linchemin_cli"
@@ -72,14 +75,21 @@ atomic = true
 py_version = "38"
 skip_gitignore = true
 
-[tool.bumpver]
-current_version = "2.0.3"
-version_pattern = "MAJOR.MINOR.PATCH"
-commit_message = "Bump version {old_version} -> {new_version}"
-commit = true
-tag = true
-push = true
+[tool.hatch.version]
+path = "src/linchemin/__about__.py"
 
-[tool.bumpver.file_patterns]
-"pyproject.toml" = ['current_version = "{version}"', 'version = "{version}"']
-"docs/source/conf.py" = ['version = "{version}"']
+[tool.hatch.envs.default]
+path = ".hatch"
+features = ["dev"]
+
+[tool.hatch.envs.default.scripts]
+test = "pytest -v {args:tests}"
+test-cov = "coverage run -m pytest {args:tests}"
+cov-report = [
+  "- coverage combine",
+  "coverage report",
+]
+cov = [
+  "test-cov",
+  "cov-report",
+]

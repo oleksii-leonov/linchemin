@@ -1,8 +1,2 @@
-import importlib.metadata
-
+from linchemin.__about__ import __version__
 from linchemin.configuration.config import settings
-
-try:
-    __version__ = importlib.metadata.version(__package__ or __name__)
-except importlib.metadata.PackageNotFoundError:
-    __version__ = "unknown version"
